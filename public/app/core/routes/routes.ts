@@ -49,7 +49,7 @@ function setupAngularRoutes($routeProvider, $locationProvider) {
     pageClass: 'page-dashboard',
   })
   .when('/dashboard/import', {
-    templateUrl: 'public/app/features/dashboard/partials/dashboardImport.html',
+    templateUrl: 'public/app/features/dashboard/partials/dashboard_import.html',
     controller : 'DashboardImportCtrl',
     controllerAs: 'ctrl',
   })

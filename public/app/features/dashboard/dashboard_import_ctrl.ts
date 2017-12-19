@@ -13,9 +13,12 @@ export class DashboardImportCtrl {
   gnetUrl: string;
   gnetError: string;
   gnetInfo: any;
+  titleTouched: boolean;
+  hasNameValidationError: boolean;
+  nameValidationError: any;
 
   /** @ngInject */
-  constructor(private backendSrv, navModelSrv, private $location, private $scope, $routeParams) {
+  constructor(private backendSrv, private validationSrv, navModelSrv, private $location, private $scope, $routeParams) {
     this.navModel = navModelSrv.getNav('create', 'import');
 
     this.step = 1;
@@ -86,15 +89,21 @@ export class DashboardImportCtrl {
   }
 
   titleChanged() {
-    this.backendSrv.search({query: this.dash.title}).then(res => {
-      this.nameExists = false;
-      for (let hit of res) {
-        if (this.dash.title === hit.title) {
+    this.titleTouched = true;
+    this.nameExists = false;
+
+    this.validationSrv.validateNewDashboardOrFolderName(this.dash.title)
+      .then(() => {
+        this.hasNameValidationError = false;
+      })
+      .catch(err => {
+        if (err.type === 'EXISTING') {
           this.nameExists = true;
-          break;
         }
-      }
-    });
+
+        this.hasNameValidationError = true;
+        this.nameValidationError = err.message;
+      });
   }
 
   saveDashboard() {
