@@ -10,6 +10,7 @@ import './shareModalCtrl';
 import './shareSnapshotCtrl';
 import './dashboard_srv';
 import './view_state_srv';
+import './validation_srv';
 import './time_srv';
 import './unsavedChangesSrv';
 import './unsaved_changes_modal';
@@ -23,7 +24,7 @@ import './dashgrid/DashboardGridDirective';
 import './dashgrid/PanelLoader';
 import './dashgrid/RowOptions';
 import './acl/acl';
-import './folder_picker/picker';
+import './folder_picker/folder_picker';
 import './move_to_folder_modal/move_to_folder';
 import './settings/settings';
 
